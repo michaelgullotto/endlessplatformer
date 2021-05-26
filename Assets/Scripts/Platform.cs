@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    
+
     public float jumpForce = 10f;
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -15,9 +15,17 @@ public class Platform : MonoBehaviour
             Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-            Vector2 velocity = rb.velocity;
-            velocity.y = jumpForce;
-            rb.velocity = velocity;
+                Vector2 velocity = rb.velocity;
+                velocity.y = jumpForce;
+                rb.velocity = velocity;
+
+
+                Player player = collision.collider.GetComponent<Player>();
+                if (player != null)
+                {
+                    //animator.SetBool("isDead", true);
+                    player.animator.SetTrigger("Jump");
+                }
             }
         }
     }

@@ -19,6 +19,13 @@ public class launchpad : MonoBehaviour
                 Vector2 velocity = rb.velocity;
                 velocity.y = jumpForce;
                 rb.velocity = velocity;
+
+                Player player = collision.collider.GetComponent<Player>();
+                if (player != null)
+                {
+                    //animator.SetBool("isDead", true);
+                    player.animator.SetTrigger("Jump");
+                }
             }
         }
 

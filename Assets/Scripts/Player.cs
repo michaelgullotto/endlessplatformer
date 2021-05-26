@@ -4,12 +4,20 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    public Animator animator;
+
     public float speed = 10f;
     float movement = 0f;
     Rigidbody2D rb;
+
+    public Vector3 startPosition;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        animator = GetComponent<Animator>();
+
+        startPosition = transform.position;
     }
 
    
