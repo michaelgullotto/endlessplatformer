@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -41,16 +43,18 @@ public class CameraFollow : MonoBehaviour
         else if (target.position.y < transform.position.y - 5)
         {
             GameOver();
+            GetComponent<Scoresave>().SaveGame();
         }
 
     }
 
     public void GameOver()
     {
-        
 
+        
         gameOverCanvas.SetActive(true);
         Time.timeScale = 0;
+        
 
     }
 
