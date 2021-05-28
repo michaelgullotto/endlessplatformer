@@ -15,6 +15,7 @@ public class CameraFollow : MonoBehaviour
 
     public void Start()
     {
+        LoadGame();
         Time.timeScale = 1;
     }
     void LateUpdate()
@@ -43,7 +44,7 @@ public class CameraFollow : MonoBehaviour
         else if (target.position.y < transform.position.y - 5)
         {
             GameOver();
-            GetComponent<Scoresave>().SaveGame();
+            
         }
 
     }
@@ -54,7 +55,7 @@ public class CameraFollow : MonoBehaviour
         
         gameOverCanvas.SetActive(true);
         Time.timeScale = 0;
-        
+        SaveGame();
 
     }
 
@@ -63,7 +64,45 @@ public class CameraFollow : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void SaveGame()
+    {
+        Save save = CreateSave();
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+        bf.Serialize(file, save);
+        file.Close();
+
+        Save.SavedScore = Scoresave.Highscore;
 
 
+
+        Debug.Log("Game Saved");
+    }
+    private Save CreateSave()
+    {
+        Save save = new Save();
+
+        Save.SavedScore = Scoresave.Highscore;
+
+        return save;
+
+    }
+    public void LoadGame()
+    {
+        if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save",
+                FileMode.Open);
+            Save save = (Save)bf.Deserialize(file);
+            file.Close();
+
+
+            Scoresave.Highscore = Save.SavedScore;
+
+
+        }
+    }
 }
 

@@ -9,7 +9,8 @@ public class MainMenu : MonoBehaviour
 {
     public void Start()
     {
-        GetComponent<Scoresave>().LoadGame();
+       // GetComponent<Scoresave>().LoadGame();
+       
     }
     public void Playgame()
     {

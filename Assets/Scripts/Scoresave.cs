@@ -12,7 +12,7 @@ public class Scoresave : MonoBehaviour
     
     void Start()
     {
-        LoadGame();
+        
         score = 0;
     }
 
@@ -25,48 +25,48 @@ public class Scoresave : MonoBehaviour
         }
     }
 
-    private Save CreateSave()
-    {
-        Save save = new Save();
+    //private Save CreateSave()
+    //{
+    //    Save save = new Save();
 
-        Save.SavedScore = Highscore;
+    //    Save.SavedScore = Highscore;
 
-        return save;
+    //    return save;
 
-    }
+    //}
 
-    public void SaveGame()
-    {
-        Save save = CreateSave();
+    //public void SaveGame()
+    //{
+    //    Save save = CreateSave();
 
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
-        bf.Serialize(file, save);
-        file.Close();
+    //    BinaryFormatter bf = new BinaryFormatter();
+    //    FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+    //    bf.Serialize(file, save);
+    //    file.Close();
 
-        Save.SavedScore = Highscore;
+    //    Save.SavedScore = Highscore;
 
         
 
-        Debug.Log("Game Saved");
-    }
+    //    Debug.Log("Game Saved");
+    //}
 
-    public void LoadGame()
-    {
-        if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save",
-                FileMode.Open);
-            Save save = (Save)bf.Deserialize(file);
-            file.Close();
-
-
-            Highscore = Save.SavedScore;
+    //public void LoadGame()
+    //{
+    //    if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
+    //    {
+    //        BinaryFormatter bf = new BinaryFormatter();
+    //        FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save",
+    //            FileMode.Open);
+    //        Save save = (Save)bf.Deserialize(file);
+    //        file.Close();
 
 
-        }
-    }
+    //        Highscore = Save.SavedScore;
+
+
+    //    }
+    //}
 
 
 
