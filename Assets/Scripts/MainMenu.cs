@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
 
     public void Start()
     {
-        // GetComponent<Scoresave>().LoadGame();
+        
         Screen.SetResolution(412, 732, Screen.fullScreen);
 
         Save save = cameraFollow.LoadGame();
