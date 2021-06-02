@@ -5,5 +5,11 @@ using UnityEngine;
 [System.Serializable]
 public class Save
 {
-    static public int SavedScore = 0;
+    public int SavedScore;
+
+    public Save(int score)
+    {
+        SavedScore = score;
+
+    }
 }

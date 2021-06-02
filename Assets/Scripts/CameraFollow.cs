@@ -15,7 +15,10 @@ public class CameraFollow : MonoBehaviour
 
     public void Start()
     {
-        LoadGame();
+        Screen.SetResolution(412, 732, Screen.fullScreen);
+        Save save = LoadGame();
+        Scoresave.Highscore = save.SavedScore;
+
         Time.timeScale = 1;
     }
     void LateUpdate()
@@ -41,7 +44,7 @@ public class CameraFollow : MonoBehaviour
             }
         }
         //kills player if they fall out of screen
-        else if (target.position.y < transform.position.y - 5)
+        else if (target.position.y < transform.position.y - 5 && Time.timeScale != 0)
         {
             GameOver();
             
@@ -55,7 +58,7 @@ public class CameraFollow : MonoBehaviour
         
         gameOverCanvas.SetActive(true);
         Time.timeScale = 0;
-        SaveGame();
+        SaveGame(Scoresave.Highscore);
 
     }
 
@@ -64,31 +67,22 @@ public class CameraFollow : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void SaveGame()
+    public void SaveGame(int score)
     {
-        Save save = CreateSave();
-
+        Save save = new Save(score);
+       
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
         bf.Serialize(file, save);
         file.Close();
 
-        Save.SavedScore = Scoresave.Highscore;
+       
 
 
 
         Debug.Log("Game Saved");
     }
-    private Save CreateSave()
-    {
-        Save save = new Save();
-
-        Save.SavedScore = Scoresave.Highscore;
-
-        return save;
-
-    }
-    public void LoadGame()
+    public Save LoadGame()
     {
         if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
         {
@@ -99,10 +93,12 @@ public class CameraFollow : MonoBehaviour
             file.Close();
 
 
-            Scoresave.Highscore = Save.SavedScore;
+            return save;// Scoresave.Highscore = Save.SavedScore;
 
 
         }
+
+        return null;
     }
 }
 

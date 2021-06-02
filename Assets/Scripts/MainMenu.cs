@@ -7,10 +7,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class MainMenu : MonoBehaviour
 {
+    public CameraFollow cameraFollow;
+
     public void Start()
     {
-       // GetComponent<Scoresave>().LoadGame();
-       
+        // GetComponent<Scoresave>().LoadGame();
+        Screen.SetResolution(412, 732, Screen.fullScreen);
+
+        Save save = cameraFollow.LoadGame();
+        Scoresave.Highscore = save.SavedScore;
+
     }
     public void Playgame()
     {

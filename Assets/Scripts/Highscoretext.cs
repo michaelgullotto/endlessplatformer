@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Highscoretext : MonoBehaviour
 {
-    
-    
 
     void Start()
     {
-       
+        
     }
 
     private void Update()
@@ -19,7 +17,6 @@ public class Highscoretext : MonoBehaviour
         GetComponent<TMPro.TextMeshProUGUI>().text = Scoresave.Highscore.ToString() + ":HighScore";
 
     }
-
 
 }
 
