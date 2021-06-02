@@ -5,6 +5,7 @@ using UnityEngine;
 public class JumpPlatform : MonoBehaviour
 {
     public float jumpForce = 30f;
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -21,7 +22,7 @@ public class JumpPlatform : MonoBehaviour
                 Player player = collision.collider.GetComponent<Player>();
                 if (player != null)
                 {
-                    //animator.SetBool("isDead", true);
+               
                     player.animator.SetTrigger("Jump");
                 }
             }

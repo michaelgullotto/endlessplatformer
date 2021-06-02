@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class launchpad : MonoBehaviour
 {
-    
-    public GameObject Yeettxt;
+   // public AudioSource gas;
     public float jumpForce = 50f;
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -23,15 +23,12 @@ public class launchpad : MonoBehaviour
                 Player player = collision.collider.GetComponent<Player>();
                 if (player != null)
                 {
-                    //animator.SetBool("isDead", true);
+                  // gas.Play();
                     player.animator.SetTrigger("Jump");
+
                 }
             }
         }
-
-        
-
-        
     }
 
 }

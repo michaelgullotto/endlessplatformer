@@ -2,11 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuState;
+    public AudioMixer audioMixer;
+    [SerializeField] Slider volumeSlider;
+
+    private void Start()
+    {
+        float volume = PlayerPrefs.GetFloat("volumesave");
+        SetVolmue(volume);
+        volumeSlider.value = volume;
+    }
 
 
     // update to refere to functions
@@ -14,13 +25,13 @@ public class PauseMenu : MonoBehaviour
     {
 
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) )
         {
             if (GameIsPaused)
             {
                 Resume();
             }
-            else
+            else if (Time.timeScale != 0)
             {
                 Pause();
             }
@@ -51,5 +62,11 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void SetVolmue(float volume)
+    {
+        audioMixer.SetFloat("Volume", volume);
+        PlayerPrefs.SetFloat("volumesave", volume);
     }
 }

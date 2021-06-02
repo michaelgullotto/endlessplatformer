@@ -9,9 +9,12 @@ public class LevelGenrator : MonoBehaviour
     public GameObject platformPrefab;
     public GameObject jumpPlatformPrefab;
     public GameObject launchPadPrefab;
+    
     public int intialspawn = 20;
     void Start()
     {
+       
+
         Vector3 spawnPostition = new Vector3();
 
         for (int i = 0; i < intialspawn; i++)

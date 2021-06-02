@@ -10,7 +10,10 @@ public class CameraFollow : MonoBehaviour
 {
     public GameObject gameOverCanvas;
     public Transform target;
-    
+    public AudioSource Song;
+    public AudioSource death;
+    public AudioSource sad;
+    public AudioSource newgame;
     
 
     public void Start()
@@ -20,6 +23,9 @@ public class CameraFollow : MonoBehaviour
         Scoresave.Highscore = save.SavedScore;
 
         Time.timeScale = 1;
+        newgame.Play();
+        Song.Play();
+        sad.Pause();
     }
     void LateUpdate()
     {
@@ -44,9 +50,10 @@ public class CameraFollow : MonoBehaviour
             }
         }
         //kills player if they fall out of screen
-        else if (target.position.y < transform.position.y - 5 && Time.timeScale != 0)
+        else if (target.position.y < transform.position.y - 4.6 && Time.timeScale != 0)
         {
             GameOver();
+
             
         }
 
@@ -59,6 +66,9 @@ public class CameraFollow : MonoBehaviour
         gameOverCanvas.SetActive(true);
         Time.timeScale = 0;
         SaveGame(Scoresave.Highscore);
+        death.Play();
+        sad.Play();
+        Song.Pause();
 
     }
 
@@ -100,5 +110,7 @@ public class CameraFollow : MonoBehaviour
 
         return null;
     }
+
+   
 }
 

@@ -144,3 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 20
+  jumppad: {fileID: 4105678582145208571, guid: dd35f56e53133fc45866e3dd2c330dfe, type: 3}
